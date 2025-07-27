@@ -1,105 +1,91 @@
-# fraud-detection
-# 🛡️ Fraud Detection Preprocessing (Task 1)
+# Fraud Detection Project
 
-This repository contains preprocessing and exploratory data analysis (EDA) for building fraud detection models. The project is part of Adey Innovations Inc.’s initiative to enhance detection of fraudulent e-commerce and credit card transactions.
+## Overview
+This project focuses on building machine learning models to detect fraudulent transactions using two datasets:
 
-The **`task1.ipynb`** notebook includes:
+1. **Credit Card Transactions**
+2. **Online Fraud Data (with geolocation and user behavior features)**
 
-* Data cleaning
-* Exploratory Data Analysis (EDA)
-* Merging geolocation data
-* Feature engineering
-* Handling class imbalance with SMOTE
-* Feature scaling
+The core goal is to compare the performance of a simple model (Logistic Regression) and a powerful ensemble model (Random Forest) using metrics appropriate for **imbalanced classification problems**.
 
 ---
 
-## 📂 Project Structure
+## Problem Statement
+Fraudulent transactions are rare but critical events that require precise detection techniques. Traditional accuracy metrics often fail in imbalanced datasets, hence our approach emphasizes:
 
+- **F1-Score**
+- **AUC-PR (Area Under Precision-Recall Curve)**
+- **Confusion Matrix**
+
+---
+
+## Project Structure
 ```
 fraud-detection/
 │
-├── data/                # Raw datasets (ignored by git)
-│   ├── Fraud_Data.csv
-│   ├── IpAddress_to_Country.csv
-│   └── creditcard.csv
+├── data/
+│   ├── raw/                  # Original datasets (Fraud_Data.csv, IpAddress_to_Country.csv, creditcard.csv)
 │
-├── .venv/               # Virtual environment (ignored by git)
+├── notebooks/
+│   └── task1.ipynb          # Data preprocessing, EDA, feature engineering
+│   └── task2.ipynb          # Model training and evaluation
 │
-├── task1.ipynb          # Task 1 notebook: preprocessing + EDA
-├── .gitignore           # Ignores .venv, data, and temp files
-└── README.md            # This file
+├── .gitignore               # Excludes .venv and data folders from Git
+├── README.md                # Project overview and instructions
+└── requirements.txt         # Python dependencies
 ```
 
 ---
 
-## 🚀 Setup Instructions
+## Tasks Completed
 
-1. **Clone the repository**
+### Task 1: Data Preprocessing & Feature Engineering
+- Handled missing values
+- Converted timestamps
+- Mapped IPs to countries using interval indexing
+- Engineered features like:
+  - `hour_of_day`, `day_of_week`, `time_since_signup`
+  - `user_tx_count`, `device_tx_count`
+- Encoded categorical features
+- Applied **SMOTE** to balance classes
+- Scaled numeric features using **StandardScaler**
 
-   ```bash
-   git clone https://github.com/your-username/fraud-detection.git
-   cd fraud-detection
-   ```
+### Task 2: Model Building and Evaluation
+Models built and compared:
+- **Logistic Regression** (baseline)
+- **Random Forest Classifier** (ensemble)
 
-2. **Create a virtual environment**
+Evaluation Metrics used:
+- **F1 Score**
+- **AUC-PR**
+- **Confusion Matrix**
+- **Classification Report**
 
-   ```bash
-   python -m venv .venv
-   source .venv/bin/activate  # Linux/Mac
-   .venv\Scripts\activate     # Windows
-   ```
-
-3. **Install dependencies**
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. **Download datasets**
-   Place `Fraud_Data.csv`, `IpAddress_to_Country.csv`, and `creditcard.csv` in the `data/` folder.
-
----
-
-## 📊 Features in Task 1
-
-* **Missing Value Handling**: Checked and confirmed no missing values in all datasets.
-* **Data Cleaning**: Removed duplicates, corrected data types (e.g., timestamps).
-* **EDA**:
-
-  * Class distribution visualization
-  * Age and purchase value histograms
-  * Time-based transaction patterns
-  * Bivariate analysis with fraud class
-* **Geolocation Analysis**: Mapped IP addresses to countries using interval matching.
-* **Feature Engineering**:
-
-  * Transaction frequency and velocity
-  * Time-based features (hour\_of\_day, day\_of\_week, time\_since\_signup)
-* **Class Imbalance Handling**: Applied SMOTE for oversampling.
-* **Scaling**: Standardized numeric features using StandardScaler.
+Both models were tested on the scaled and resampled fraud dataset.
 
 ---
 
-## 📦 Dependencies
-
-* Python 3.8+
-* pandas
-* numpy
-* matplotlib
-* seaborn
-* scikit-learn
-* imbalanced-learn
+## Key Insights
+- **Random Forest outperformed Logistic Regression** significantly in terms of F1 and AUC-PR, demonstrating better handling of nonlinear patterns in the data.
+- Ensemble methods are more robust for fraud detection when trained on resampled and well-engineered features.
 
 ---
 
-## 🔥 Notes
-
-* `.venv/` and `data/` are ignored by git (see `.gitignore`).
-* Only code and configuration files are versioned.
-
----
-
-## 📝 License
-
-MIT License © Adey Innovations Inc.
+## Setup Instructions
+1. Clone the repository:
+```bash
+git clone https://github.com/Becky-Chala/fraud-detection.git
+```
+2. Navigate to the project:
+```bash
+cd fraud-detection
+```
+3. Create and activate a virtual environment:
+```bash
+python -m venv .venv
+source .venv/bin/activate  # For Windows: .venv\Scripts\activate
+```
+4. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
