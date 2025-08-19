@@ -1,0 +1,47 @@
+# ========================
+# Python
+# ========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pkl
+*.egg-info/
+*.log
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb_save
+*.ipynb_checkpoints
+
+# ========================
+# Project Specific
+# ========================
+
+# Data files (large and sensitive)
+data/
+*.csv
+*.tsv
+*.xlsx
+*.xls
+*.json
+*.parquet
+*.h5
+
+# Model artifacts
+models/
+*.joblib
+*.pkl
+*.sav
+
+# Cache / temp
+.DS_Store
+*.cache
+*.tmp
+*.swp
